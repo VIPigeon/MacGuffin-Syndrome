@@ -19,6 +19,12 @@ class MovingMG(MiniGame):
                     continue
                 # пропускаем пустые символы для удобства при создании карты
                 self._map.append(list(line.replace(MAP_NULL_CHAR, '')))
+                if '@' in self._map[-1]:
+                    self.player.y = len(self._map) - 1
+                    for i in range(len(self._map[-1])):
+                        if self._map[-1][i] == '@':
+                            self._map[-1][i] = '.'
+                            self.player.x = i
 
 
     def is_end():
