@@ -20,3 +20,5 @@ MAP_NULL_CHAR = ' '  # на всякий случай
 
 MAP_SOLIDS = "#"
 MAP_INTERACTIVES = ""
+
+CPS = 60
