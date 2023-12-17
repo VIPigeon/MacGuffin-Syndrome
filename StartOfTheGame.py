@@ -9,7 +9,7 @@ class StartOfTheGame(MonologMG):
         super().__init__(player)
         screen.clear()
         self._printPlayer()
-        self._printFile('StartOfTheGame/init.txt')
+        screen.printFile('StartOfTheGame/init.txt')
         self._sleep_index = 0
 
     def update(self):
@@ -17,11 +17,11 @@ class StartOfTheGame(MonologMG):
         c = getch()
         if c == '1':
             self._is_end = True
-        elif c == '2' and self._sleep_index < 4:
+        elif c == '2' and self._sleep_index < 3:
             self._sleep_index += 1
             screen.clear()
             self._printPlayer()
-            self._printFile(f'StartOfTheGame/sleep{self._sleep_index}.txt')
+            screen.printFile(f'StartOfTheGame/sleep{self._sleep_index}.txt')
 
 
 if __name__ == '__main__':

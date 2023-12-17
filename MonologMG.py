@@ -14,30 +14,9 @@ class MonologMG(MiniGame):
     def update(self):
         assert False
 
-    def _printLine(self, line):
-        import time
-        import sys
-        from data import CPS
-
-        for c in line:
-            print(c, end='')
-            sys.stdout.flush()
-            # if c != ' ':
-            time.sleep(1 / CPS)
-
-    def _printFile(self, unix_fname):
-        import os
-        if os.system == 'nt':
-            fname = unix_fname.replace('/', '\\')
-        else:
-            fname = unix_fname
-        with open(fname, 'r') as f:
-            for line in f.readlines():
-                self._printLine(line)
-
     def _printPlayer(self):
-        self._printLine(f'Здоровье: {self.player.health}\n')
-        self._printLine(f'Рассудок: {self.player.mind}\n')
+        print(f'Здоровье: {self.player.health}')
+        print(f'Рассудок: {self.player.mind}')
 
 
 if __name__ == '__main__':
