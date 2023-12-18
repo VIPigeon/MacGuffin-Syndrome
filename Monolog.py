@@ -2,7 +2,7 @@
 from MiniGame import MiniGame
 
 
-class MonologMG(MiniGame):
+class Monolog(MiniGame):
 
     def __init__(self, player):
         super().__init__(player)

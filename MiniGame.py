@@ -9,6 +9,10 @@ class MiniGame:
     def update(self):
         assert False
 
+    def play(self):
+        while not self.is_end():
+            self.update()
+
 
 if __name__ == '__main__':
     mg = MiniGame()

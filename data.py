@@ -15,10 +15,8 @@ PLAYER_MAP_CHAR = '@'
 
 MAP_FRAME_SIZE_X = 20
 MAP_FRAME_SIZE_Y = 10
+MAP_INDENT = "\t"
 
 MAP_NULL_CHAR = ' '  # на всякий случай
-
-MAP_SOLIDS = "#"
-MAP_INTERACTIVES = ""
 
 CPS = 60

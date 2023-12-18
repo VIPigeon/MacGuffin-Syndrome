@@ -1,12 +1,12 @@
 
-from MonologMG import MonologMG
+from Monolog import Monolog
 import os
 import screen
 import time
 
 
-class FrameAnimation(MonologMG):
-    def __init__(self, player, fps, path):
+class FrameAnimation(Monolog):
+    def __init__(self, player, path, fps=2):
         super().__init__(player)
         self.frame = 0
         self.fps = fps
@@ -35,6 +35,6 @@ class FrameAnimation(MonologMG):
 
 if __name__ == '__main__':
     from Player import Player
-    mg = FrameAnimation(Player(), 1, 'Animations/MorningClock')
+    mg = FrameAnimation(Player(), 'Animations/MorningClock', 2)
     while not mg.is_end():
         mg.update()

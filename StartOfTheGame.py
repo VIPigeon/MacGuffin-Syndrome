@@ -1,9 +1,9 @@
 
-from MonologMG import MonologMG
+from Monolog import Monolog
 import screen
 
 
-class StartOfTheGame(MonologMG):
+class StartOfTheGame(Monolog):
 
     def __init__(self, player):
         super().__init__(player)

@@ -3,14 +3,16 @@ import os
 
 from MiniGame import MiniGame
 from data import *
+import interactives
 
 
-class MovingMG(MiniGame):
+class Moving(MiniGame):
 
     def __init__(self, player, fname):
         super().__init__(player)
         self._is_end = False
         self._map = []
+        self.text = [[''] * MAP_FRAME_SIZE_X for _ in range(MAP_FRAME_SIZE_Y)]  # текст поверх карты
         with open(fname, 'r') as f:
             for line in f.readlines():
                 line = line[:-1]  # убираем последний пробел
@@ -37,12 +39,21 @@ class MovingMG(MiniGame):
         startY = self.player.y // frameY * frameY
         startX = self.player.x // frameX * frameX
         for i in range(startY, startY + frameY):
-            if i == self.player.y:
-                line = self._map[i][:]
-                line[self.player.x] = '@'
-                print(*line[startX:startX + frameX], sep='')
-            else:
-                print(*self._map[i][startX:startX + frameX], sep='')
+            print(MAP_INDENT, end='')
+            for j in range(startX, startX + frameX):
+                if self.player.y == i and self.player.x == j:
+                    print('@', end='')
+                elif self.text[i][j]:
+                    print(self.text[i][j])
+                else:
+                    print(self._map[i][j], end='')
+            print()
+            # if i == self.player.y:
+            #     line = self._map[i][:]
+            #     line[self.player.x] = '@'
+            #     print(MAP_INDENT, *line[startX:startX + frameX], sep='')
+            # else:
+            #     print(MAP_INDENT, *self._map[i][startX:startX + frameX], sep='')
 
 
     def update(self):
@@ -66,11 +77,12 @@ class MovingMG(MiniGame):
     def check_move(self, dx, dy):
         x = self.player.x + dx
         y = self.player.y + dy
-        if self._map[y][x] in MAP_SOLIDS:
+        tile = self._map[y][x]
+        if tile in '[]#':
             return False
-        if self._map[y][x] in MAP_INTERACTIVES:
-            ...
-            assert False
+        if tile in '_-|':
+            # interactives.
+            return False
         return True
 
 
@@ -80,7 +92,7 @@ if __name__ == "__main__":
 
     fname = 'rogueMap1.txt'
     player = Player()
-    mmg = MovingMG(player, fname)
+    mmg = Moving(player, fname)
     os.system('cls' if os.name == 'nt' else 'clear')
     mmg.print()
     while True:
