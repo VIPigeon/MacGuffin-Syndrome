@@ -48,12 +48,6 @@ class Moving(MiniGame):
                 else:
                     print(self._map[i][j], end='')
             print()
-            # if i == self.player.y:
-            #     line = self._map[i][:]
-            #     line[self.player.x] = '@'
-            #     print(MAP_INDENT, *line[startX:startX + frameX], sep='')
-            # else:
-            #     print(MAP_INDENT, *self._map[i][startX:startX + frameX], sep='')
 
 
     def update(self):
@@ -72,6 +66,17 @@ class Moving(MiniGame):
         if self.check_move(dx, dy):
             self.player.x += dx
             self.player.y += dy
+
+    def addText(self, string):
+        xStatus = 'medium'
+        yStatus = 'on'
+        if self.player.y == 0:
+            yStatus = 'under'
+        if self.player.x < len(string) // 2 + 1:
+            xStatus = 'right'
+        elif MAP_FRAME_SIZE_X - self.player.x < len(string) // 2 + 1:
+            xStatus = 'left'
+        ...
 
 
     def check_move(self, dx, dy):
